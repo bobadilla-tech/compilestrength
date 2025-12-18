@@ -1,23 +1,28 @@
 "use client"
 
+import Image from "next/image"
+
 const testimonials = [
   {
-    name: "Alex Chen",
-    role: "Software Engineer, FAANG",
-    quote: "Finally a program that gets it. The debugging approach to plateaus changed how I think about training.",
-    initials: "AC",
+    name: "Eliaz Bobadilla",
+    role: "Software Engineer & Competitive Powerlifter",
+    quote: "Built CompileStrength to solve my own training needs. The AI programming approach transformed how I prepare for competitions.",
+    initials: "EB",
+    image: "/eliaz.jpeg",
   },
   {
-    name: "Jordan Rivera",
-    role: "Startup Founder",
-    quote: "CompileStrength saved me hours. The AI coach understands my constraints and time limitations perfectly.",
-    initials: "JR",
+    name: "Leonardo Estacio",
+    role: "Full Stack Engineer & Hobbyist Weightlifter",
+    quote: "As someone who lifts for fun, CompileStrength makes it easy to stay consistent without overthinking my programming.",
+    initials: "LE",
+    image: "/leonardo.jpeg",
   },
   {
-    name: "Sam Patel",
-    role: "Data Scientist",
-    quote: "The version control for workouts is genius. I can now track and optimize my training like codebase.",
-    initials: "SP",
+    name: "Carlos Bonifacio",
+    role: "Full Stack Engineer & Bodybuilder",
+    quote: "Training for aesthetics while working full-time is tough. The AI coach adapts perfectly to my bodybuilding goals and busy schedule.",
+    initials: "CB",
+    image: null,
   },
 ]
 
@@ -33,12 +38,22 @@ export function SocialProof() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-background border border-border rounded-xl p-8">
+          {testimonials.map((testimonial) => (
+            <div key={testimonial.name} className="bg-background border border-border rounded-xl p-8">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="font-mono font-bold text-primary">{testimonial.initials}</span>
-                </div>
+                {testimonial.image ? (
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    width={48}
+                    height={48}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                    <span className="font-mono font-bold text-primary">{testimonial.initials}</span>
+                  </div>
+                )}
                 <div>
                   <p className="font-semibold">{testimonial.name}</p>
                   <p className="text-sm text-muted-foreground">{testimonial.role}</p>

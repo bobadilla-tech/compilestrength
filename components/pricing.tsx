@@ -84,15 +84,16 @@ export function Pricing() {
                   <span className="text-muted-foreground">{plan.period}</span>
                 </div>
 
-                <button
-                  className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 mb-8 ${
+                <a
+                  href={plan.name === "Free" ? "https://compilestrength.com/signup" : plan.name === "Pro" ? "https://compilestrength.com/signup" : "https://compilestrength.com/contact"}
+                  className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 mb-8 inline-block text-center ${
                     plan.popular
                       ? "bg-primary text-primary-foreground hover:bg-accent hover:shadow-lg hover:shadow-primary/50"
                       : "bg-background border border-border text-foreground hover:bg-card"
                   }`}
                 >
                   {plan.cta}
-                </button>
+                </a>
 
                 <div className="space-y-4">
                   {plan.features.map((feature, featureIndex) => (

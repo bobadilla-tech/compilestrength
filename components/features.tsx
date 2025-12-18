@@ -5,25 +5,25 @@ import { Users, Wrench, Bug, GitBranch } from "lucide-react"
 const features = [
   {
     icon: Users,
-    title: "The Coach",
+    title: "AI Coaching Personas",
     description:
-      "AI coaching with different personas for powerlifting, bodybuilding, and more. Get personalized guidance that adapts to your style.",
+      "Multiple AI coaching personas for powerlifting, bodybuilding, Olympic lifting, and general fitness. Each coach uses evidence-based programming principles tailored to your discipline.",
   },
   {
     icon: Wrench,
-    title: "Workout Builder",
+    title: "Science-Based Workout Builder",
     description:
-      "Generate personalized programs based on your goals, experience level, and physical constraints in seconds.",
+      "Generate personalized workout programs based on exercise science research, your goals, experience level, and physical constraints. Data-driven programming in seconds.",
   },
   {
     icon: Bug,
     title: "Gains Debugger",
-    description: "Analyze why you're plateauing and get actionable fixes. Debug your training like you debug code.",
+    description: "AI-powered analysis to identify why you're plateauing. Get actionable recommendations based on training principles and your workout data. Debug your gains like you debug code.",
   },
   {
     icon: GitBranch,
-    title: "GitGains",
-    description: "Version control for your training. Track workout history, progress, and optimize over time.",
+    title: "GitGains - Workout Version Control",
+    description: "Version control for your training programs. Track workout history, compare training blocks, analyze progress metrics, and optimize over time with data.",
   },
 ]
 

@@ -9,7 +9,7 @@ const steps = [
   {
     number: "02",
     title: "AI Compiles Your Program",
-    description: "Our AI analyzes your data and generates your personalized workout split in seconds.",
+    description: "Our AI analyzes your data against peer-reviewed exercise science research to generate your personalized workout split in seconds.",
   },
   {
     number: "03",
@@ -25,7 +25,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-mono font-bold mb-4">
