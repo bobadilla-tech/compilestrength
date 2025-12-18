@@ -91,12 +91,14 @@ This project is configured for **Cloudflare Pages** deployment (supports private
 2. **Configure Build Settings**:
    ```
    Framework preset: Next.js
-   Build command: npx opennextjs-cloudflare build
-   Build output directory: .worker-next
+   Build command: npx opennextjs-cloudflare
+   Build output directory: .worker-next/worker
    Root directory: /
    Node.js version: 18
    Environment variables: (none required for landing page)
    ```
+
+   **Important**: The build command runs both `build` and `deploy` steps automatically.
 
 3. **Deploy**:
    - Click "Save and Deploy"
