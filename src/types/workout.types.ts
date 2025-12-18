@@ -11,7 +11,7 @@ export interface Exercise {
 	id: string;
 	name: string;
 	description?: string;
-	muscleGroup?: string; // Alternative naming
+	muscleGroup?: string;
 	equipmentType?: string; // Alternative naming
 	difficulty?: string;
 	videoUrl?: string;
