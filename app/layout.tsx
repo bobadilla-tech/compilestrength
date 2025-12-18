@@ -58,8 +58,6 @@ export const metadata: Metadata = {
 		description:
 			"Science-based AI workout programming for engineers. Debug your gains like you debug code.",
 		images: ["/og-image.png"],
-		creator: "@compilestrength",
-		site: "@compilestrength",
 	},
 	robots: {
 		index: true,
@@ -170,7 +168,6 @@ export default function RootLayout({
 		logo: "https://compilestrength.com/icon.svg",
 		description: "AI-powered fitness platform for engineers and developers",
 		sameAs: [
-			"https://x.com/compilestrength",
 			"https://github.com/bobadilla-tech",
 			"https://www.linkedin.com/company/compilestrength",
 		],
@@ -193,10 +190,7 @@ export default function RootLayout({
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
 				/>
 			</head>
-			<body className={`font-sans antialiased`}>
-				{children}
-				<Analytics />
-			</body>
+			<body className={`font-sans antialiased`}>{children}</body>
 		</html>
 	);
 }

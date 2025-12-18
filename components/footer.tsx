@@ -1,6 +1,6 @@
 "use client"
 
-import { Github, Twitter, Linkedin } from "lucide-react"
+import { Github, Linkedin } from "lucide-react"
 
 export function Footer() {
   return (
@@ -82,9 +82,6 @@ export function Footer() {
             </div>
 
             <div className="flex items-center gap-4">
-              <a href="https://x.com/compilestrength" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-                <Twitter size={20} />
-              </a>
               <a href="https://github.com/bobadilla-tech" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <Github size={20} />
               </a>
