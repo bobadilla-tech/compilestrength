@@ -15,6 +15,17 @@ deployed on Cloudflare Workers.
 **For SEO and metadata best practices, see
 [docs/SEO_BEST_PRACTICES.md](docs/SEO_BEST_PRACTICES.md)**
 
+**IMPORTANT: llms.txt Maintenance**
+
+- The project includes `/public/llms.txt` - a comprehensive description of the site for AI assistants
+- **Update llms.txt whenever you**:
+  - Add new features or calculators
+  - Change subscription tiers or pricing
+  - Modify route structure or API endpoints
+  - Update technology stack
+  - Add new documentation
+- This file helps AI assistants understand the project when crawling or interacting with the site
+
 ## Core Architecture
 
 ### Tech Stack
@@ -312,7 +323,7 @@ import type { CreateWorkoutSet, WorkoutSession } from "@/schemas";
 
 ### Configuration
 
-- Uses `nodejs_compat` compatibility flag
+- Uses `nodejs_compat` and `global_fetch_strictly_public` compatibility flags
 - OpenNext.js adapter for Cloudflare deployment
 - Assets served from `.open-next/assets`
 - Worker script at `.open-next/worker.js`

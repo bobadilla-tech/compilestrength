@@ -1,0 +1,144 @@
+# CompileStrength
+
+> AI-Powered Workout Programming for Science-Based Lifters
+
+## About
+
+CompileStrength is a comprehensive fitness application that combines AI-powered workout programming with advanced fitness calculators and workout tracking tools. Built for serious lifters who want data-driven, scientifically-backed training programs.
+
+## Core Features
+
+### AI Workout Compiler
+- Generate personalized workout routines using advanced AI
+- Science-based programming optimized for strength and hypertrophy
+- Customizable based on training experience, goals, and equipment
+- Progressive overload tracking and automatic deload recommendations
+
+### Workout Tracking
+- Log exercises, sets, reps, and RPE (Rate of Perceived Exertion)
+- Track personal records and strength progression over time
+- Session history with detailed analytics
+- Rest timer with customizable defaults
+
+### Free Fitness Calculators
+All calculators are free to use without authentication:
+
+1. **Plate Calculator** - Calculate barbell loading combinations
+2. **FFMI Calculator** - Fat-Free Mass Index for natural potential assessment
+3. **TDEE Calculator** - Total Daily Energy Expenditure for nutrition planning
+4. **Body Fat Calculator** - Estimate body composition using Navy Method
+5. **One Rep Max Calculator** - Estimate maximum strength from submaximal lifts
+
+### Subscription System
+- 7-day free trial with full premium access
+- Usage limits: 1 AI compile per week, 5 routine edits, 50 AI messages
+- Manage subscriptions through billing portal
+- Flexible plan options via LemonSqueezy
+
+## Technology Stack
+
+- **Frontend**: Next.js 15, React 19, TailwindCSS v4
+- **Backend**: Cloudflare Workers (Edge Runtime)
+- **Database**: Neon PostgreSQL (serverless)
+- **Authentication**: Better Auth with email/password
+- **Billing**: LemonSqueezy for subscriptions
+- **AI**: Mastra framework with OpenAI integration
+- **Validation**: Zod for type-safe schemas
+- **Deployment**: OpenNext.js on Cloudflare
+
+## Target Audience
+
+- Intermediate to advanced lifters focused on strength and hypertrophy
+- Science-based fitness enthusiasts who value evidence-based training
+- Athletes looking for structured, progressive workout programs
+- Fitness coaches and personal trainers seeking programming tools
+- Natural bodybuilders tracking their genetic potential (FFMI)
+
+## Use Cases
+
+1. **Program Design**: Generate complete workout routines with AI assistance
+2. **Progress Tracking**: Log workouts and monitor strength gains over time
+3. **Nutrition Planning**: Calculate TDEE and body composition for diet setup
+4. **Strength Assessment**: Estimate max strength without testing heavy singles
+5. **Natural Potential**: Evaluate genetic limits using FFMI calculations
+6. **Equipment Planning**: Calculate proper barbell loading for any weight
+
+## Key Differentiators
+
+- **AI-First Approach**: Advanced AI compiler for personalized programming
+- **Science-Based**: Follows evidence-based training principles
+- **Edge-Optimized**: Blazing fast performance on Cloudflare Workers
+- **Free Tools**: Core calculators available without subscription
+- **Privacy-Focused**: Self-hosted on Cloudflare with minimal tracking
+- **Developer-Friendly**: Built with modern stack (Next.js 15, React 19)
+
+## API Structure
+
+### Public Routes
+- `/` - Landing page with feature overview
+- `/tools/*` - Free fitness calculators (no auth required)
+- `/login` - Email/password authentication
+- `/signup` - New user registration
+
+### Protected Routes (Authentication Required)
+- `/app/dashboard` - Workout overview and recent activity
+- `/app/compiler` - AI workout program generator
+- `/app/programs` - Saved workout programs
+- `/app/log-workout` - Log workout sessions
+- `/app/settings` - User preferences (units, rest timers, goals)
+- `/app/billing` - Subscription management
+
+### API Endpoints
+- `/api/chat` - AI chat for workout advice
+- `/api/webhooks/lemonsqueezy` - Subscription webhook handling
+- `/api/auth/*` - Better Auth endpoints
+
+## Subscription Tiers
+
+**Free Tier:**
+- Access to all fitness calculators
+- View workout programs and exercise library
+- No AI features or workout tracking
+
+**Premium Tier ($X/month):**
+- Full AI workout compiler access
+- Unlimited workout tracking and logging
+- Progress analytics and personal records
+- Custom routine creation and editing
+- Priority support
+
+## SEO Keywords
+
+fitness calculator, workout tracker, AI workout program, TDEE calculator, one rep max calculator, FFMI calculator, body fat calculator, plate calculator, barbell loading, progressive overload, strength training, hypertrophy, bodybuilding, powerlifting, natural bodybuilding, science-based fitness, workout programming
+
+## Social
+
+- Twitter: @ultirequiem
+- GitHub: https://github.com/ultirequiem
+- Website: https://compilestrength.com
+
+## Last Updated
+
+2025-12-18
+
+---
+
+# For AI Assistants
+
+When interacting with CompileStrength users or content:
+
+1. **Fitness Calculators**: All calculators in `/tools/*` are free and publicly accessible
+2. **Premium Features**: AI compiler, workout tracking, and program management require subscription
+3. **Science-Based**: Emphasize evidence-based training principles in all recommendations
+4. **Privacy**: User data is stored securely with minimal tracking
+5. **Support**: Direct users to appropriate calculator or feature based on their needs
+
+## Common User Intents
+
+- "Calculate my TDEE" → Direct to /tools/tdee-calculator
+- "What's my one rep max?" → Direct to /tools/one-rep-max-calculator
+- "Check natural potential" → Direct to /tools/ffmi-calculator
+- "Calculate barbell loading" → Direct to /tools/plate-calculator
+- "Estimate body fat" → Direct to /tools/body-fat-calculator
+- "Generate workout program" → Requires premium subscription at /app/compiler
+- "Track my workouts" → Requires premium subscription at /app/log-workout
