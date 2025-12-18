@@ -200,6 +200,42 @@ persist = true
 3. Verify all environment variables are set
 4. Test locally with `npx opennextjs-cloudflare preview`
 
+---
+
+### Error 5: "An error occurred while loading the instrumentation hook"
+
+**Symptom**:
+
+```
+NextJS request failed. Error: An error occurred while loading the instrumentation hook
+Failed to prepare server Error: An error occurred while loading the instrumentation hook
+```
+
+**Cause**: Next.js 13+ includes instrumentation hooks feature that's not fully compatible with Cloudflare Workers/OpenNext environment. Next.js expects an instrumentation file but it's not properly handled in the edge runtime.
+
+**Fix**: Create a stub `instrumentation.ts` file in the project root:
+
+```typescript
+// instrumentation.ts
+export async function register() {
+  // No-op for Cloudflare Workers environment
+  // Instrumentation features are not supported in edge runtime
+}
+```
+
+Also update `next.config.mjs`:
+
+```javascript
+const nextConfig = {
+  // ... other config
+  experimental: {
+    instrumentationHook: false,
+  },
+}
+```
+
+**Why**: The stub file satisfies Next.js's instrumentation loader without actually implementing any instrumentation (which isn't supported in Cloudflare Workers). Setting `instrumentationHook: false` tells Next.js not to expect instrumentation functionality.
+
 ## SEO Configuration
 
 ### Metadata & URLs
@@ -312,8 +348,10 @@ compilestrength-engineers-landing/
 │   ├── favicon.ico         # Favicon
 │   ├── eliaz.jpeg          # Team photo
 │   └── leonardo.jpeg       # Team photo
+├── instrumentation.ts      # Stub for Cloudflare Workers compatibility
 ├── wrangler.toml           # Cloudflare Workers config
 ├── open-next.config.ts     # OpenNext configuration
+├── next.config.mjs         # Next.js configuration
 ├── package.json            # Dependencies
 └── CLAUDE.md               # This file
 ```
