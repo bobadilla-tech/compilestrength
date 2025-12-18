@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://compilestrength.com"),
+	metadataBase: new URL("https://engineers.compilestrength.com"),
 	title: {
 		default:
 			"CompileStrength - AI-Powered Workout Programming for Engineers & Developers",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		type: "website",
 		locale: "en_US",
-		url: "https://compilestrength.com",
+		url: "https://engineers.compilestrength.com",
 		title: "CompileStrength - AI-Powered Workout Programming for Engineers",
 		description:
 			"Science-based AI workout programming for engineers and developers. Get personalized training plans based on your data, goals, and constraints.",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
 	},
 	manifest: "/site.webmanifest",
 	alternates: {
-		canonical: "https://compilestrength.com",
+		canonical: "https://engineers.compilestrength.com",
 	},
 	category: "fitness",
 };
@@ -94,7 +94,7 @@ export default function RootLayout({
 		applicationSubCategory: "Fitness",
 		description:
 			"AI-powered workout programming for engineers, developers, and tech professionals. Science-based personalized training plans.",
-		url: "https://compilestrength.com",
+		url: "https://engineers.compilestrength.com",
 		operatingSystem: "Web Browser",
 		offers: [
 			{
@@ -151,8 +151,8 @@ export default function RootLayout({
 		"@context": "https://schema.org",
 		"@type": "Organization",
 		name: "CompileStrength",
-		url: "https://compilestrength.com",
-		logo: "https://compilestrength.com/icon.svg",
+		url: "https://engineers.compilestrength.com",
+		logo: "https://engineers.compilestrength.com/icon.svg",
 		description: "AI-powered fitness platform for engineers and developers",
 		sameAs: [
 			"https://github.com/bobadilla-tech",

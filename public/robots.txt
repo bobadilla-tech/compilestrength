@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://compilestrength.com/sitemap.xml
+Sitemap: https://engineers.compilestrength.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

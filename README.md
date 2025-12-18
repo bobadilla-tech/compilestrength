@@ -1,6 +1,6 @@
 # CompileStrength Landing Page
 
-[![Deployed on Cloudflare](https://img.shields.io/badge/Deployed%20on-Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://compilestrength.com)
+[![Deployed on Cloudflare](https://img.shields.io/badge/Deployed%20on-Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://engineers.compilestrength.com)
 
 Official landing page for **CompileStrength** - AI-powered workout programming for engineers, developers, and tech professionals.
 
@@ -8,7 +8,7 @@ Official landing page for **CompileStrength** - AI-powered workout programming f
 
 CompileStrength is a science-based fitness platform that uses AI to generate personalized workout programs based on user data, goals, and physical constraints. This landing page serves as the marketing site and entry point to the main SaaS application.
 
-**Live Site**: [https://compilestrength.com](https://compilestrength.com)
+**Live Site**: [https://engineers.compilestrength.com](https://engineers.compilestrength.com)
 
 ## Features
 
@@ -198,7 +198,7 @@ This landing page uses open-source components under their respective licenses:
 
 ## Contact
 
-- **Website**: [compilestrength.com](https://compilestrength.com)
+- **Website**: [compilestrength.com](https://engineers.compilestrength.com)
 - **Email**: eliaz@bobadilla.tech
 - **GitHub**: [@bobadilla-tech](https://github.com/bobadilla-tech)
 - **LinkedIn**: [CompileStrength](https://www.linkedin.com/company/compilestrength)

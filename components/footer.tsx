@@ -29,7 +29,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://compilestrength.com/signup" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://engineers.compilestrength.com/signup" className="text-muted-foreground hover:text-foreground transition-colors">
                   Sign Up
                 </a>
               </li>
@@ -40,7 +40,7 @@ export function Footer() {
             <h4 className="font-mono font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="https://compilestrength.com/blog" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://engineers.compilestrength.com/blog" className="text-muted-foreground hover:text-foreground transition-colors">
                   Blog
                 </a>
               </li>
@@ -61,12 +61,12 @@ export function Footer() {
             <h4 className="font-mono font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="https://compilestrength.com/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://engineers.compilestrength.com/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
                   Privacy
                 </a>
               </li>
               <li>
-                <a href="https://compilestrength.com/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://engineers.compilestrength.com/terms" className="text-muted-foreground hover:text-foreground transition-colors">
                   Terms
                 </a>
               </li>

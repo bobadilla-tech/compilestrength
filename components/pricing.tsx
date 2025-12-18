@@ -85,7 +85,7 @@ export function Pricing() {
                 </div>
 
                 <a
-                  href={plan.name === "Free" ? "https://compilestrength.com/signup" : plan.name === "Pro" ? "https://compilestrength.com/signup" : "https://compilestrength.com/contact"}
+                  href={plan.name === "Free" ? "https://engineers.compilestrength.com/signup" : plan.name === "Pro" ? "https://engineers.compilestrength.com/signup" : "https://engineers.compilestrength.com/contact"}
                   className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 mb-8 inline-block text-center ${
                     plan.popular
                       ? "bg-primary text-primary-foreground hover:bg-accent hover:shadow-lg hover:shadow-primary/50"

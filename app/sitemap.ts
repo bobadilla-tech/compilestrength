@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
 	return [
 		{
-			url: "https://compilestrength.com",
+			url: "https://engineers.compilestrength.com",
 			lastModified: new Date(),
 			changeFrequency: "weekly",
 			priority: 1,

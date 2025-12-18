@@ -35,13 +35,13 @@ export function Header() {
           <Link href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">
             Pricing
           </Link>
-          <Link href="https://compilestrength.com/blog" className="text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="https://engineers.compilestrength.com/blog" className="text-muted-foreground hover:text-foreground transition-colors">
             Blog
           </Link>
-          <Link href="https://compilestrength.com/login" className="text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="https://engineers.compilestrength.com/login" className="text-muted-foreground hover:text-foreground transition-colors">
             Login
           </Link>
-          <Link href="https://compilestrength.com/signup" className="px-6 py-2 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-accent transition-all duration-200 hover:shadow-lg hover:shadow-primary/50 inline-block">
+          <Link href="https://engineers.compilestrength.com/signup" className="px-6 py-2 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-accent transition-all duration-200 hover:shadow-lg hover:shadow-primary/50 inline-block">
             Sign Up
           </Link>
         </div>

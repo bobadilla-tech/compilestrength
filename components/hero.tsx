@@ -19,7 +19,7 @@ export function Hero() {
             </p>
 
             <div className="flex gap-4 flex-wrap pt-4">
-              <a href="https://compilestrength.com/signup" className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-accent transition-all duration-200 hover:shadow-lg hover:shadow-primary/50 flex items-center gap-2 group">
+              <a href="https://engineers.compilestrength.com/signup" className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-accent transition-all duration-200 hover:shadow-lg hover:shadow-primary/50 flex items-center gap-2 group">
                 Start Free Trial
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </a>
