@@ -10,10 +10,10 @@ programming system designed for science-based lifters. Built with Next.js 15,
 deployed on Cloudflare Workers.
 
 **For design and branding guidelines, see
-[docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md)**
+[docs/tech/STYLE_GUIDE.md](docs/tech/STYLE_GUIDE.md)**
 
 **For SEO and metadata best practices, see
-[docs/SEO_BEST_PRACTICES.md](docs/SEO_BEST_PRACTICES.md)**
+[docs/marketing/SEO_BEST_PRACTICES.md](docs/marketing/SEO_BEST_PRACTICES.md)**
 
 **IMPORTANT: llms.txt Maintenance**
 
@@ -150,7 +150,7 @@ The application has comprehensive workout tracking and billing models:
 
 👋 **New to CompileStrength?** Start here:
 
-**📚 [ONBOARDING.md](docs/ONBOARDING.md)** - Complete setup and architecture
+**📚 [ONBOARDING.md](docs/tech/ONBOARDING.md)** - Complete setup and architecture
 guide for new developers
 
 This guide covers development environment setup, project architecture, common
@@ -158,14 +158,16 @@ tasks, and troubleshooting tips.
 
 ### Additional Resources
 
-- **Design System**: [docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md) - Brand
+- **Design System**: [docs/tech/STYLE_GUIDE.md](docs/tech/STYLE_GUIDE.md) - Brand
   guidelines and UI patterns
-- **SEO Best Practices**: [docs/SEO_BEST_PRACTICES.md](docs/SEO_BEST_PRACTICES.md) -
+- **SEO Best Practices**: [docs/marketing/SEO_BEST_PRACTICES.md](docs/marketing/SEO_BEST_PRACTICES.md) -
   Comprehensive SEO and metadata guidelines for all pages (REQUIRED for new tool pages)
 - **Billing Integration**:
-  [docs/LEMONSQUEEZY_SETUP.md](docs/LEMONSQUEEZY_SETUP.md) - Subscription setup
-- **Webhook Testing**: [docs/NGROK_SETUP.md](docs/NGROK_SETUP.md) - Local
+  [docs/tech/LEMONSQUEEZY_SETUP.md](docs/tech/LEMONSQUEEZY_SETUP.md) - Subscription setup
+- **Webhook Testing**: [docs/tech/NGROK_SETUP.md](docs/tech/NGROK_SETUP.md) - Local
   development with ngrok
+- **Onboarding Guide**: [docs/tech/ONBOARDING.md](docs/tech/ONBOARDING.md) - Complete
+  setup guide for new developers
 
 ## Development Commands
 
@@ -218,7 +220,7 @@ To use ngrok for testing LemonSqueezy webhooks:
 4. Configure LemonSqueezy webhook to:
    `https://your-subdomain.ngrok-free.app/api/webhooks/lemonsqueezy`
 
-See [docs/NGROK_SETUP.md](docs/NGROK_SETUP.md) for detailed instructions.
+See [docs/tech/NGROK_SETUP.md](docs/tech/NGROK_SETUP.md) for detailed instructions.
 
 ### Deployment
 
@@ -357,7 +359,7 @@ import type { CreateWorkoutSet, WorkoutSession } from "@/schemas";
 
 When creating new calculator or tool pages in `src/app/tools/`, you MUST:
 
-1. **Follow SEO Best Practices**: See [docs/SEO_BEST_PRACTICES.md](docs/SEO_BEST_PRACTICES.md)
+1. **Follow SEO Best Practices**: See [docs/marketing/SEO_BEST_PRACTICES.md](docs/marketing/SEO_BEST_PRACTICES.md)
    for complete requirements
 2. **Create a layout.tsx** with comprehensive metadata including:
    - Title, description, keywords
@@ -409,7 +411,7 @@ non-blocking user feedback.
 - TailwindCSS v4 with CSS-first configuration
 - Dark mode enforced via `html` class in layout
 - Component styling follows Shadcn/ui patterns
-- Follow [docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md) for brand guidelines
+- Follow [docs/tech/STYLE_GUIDE.md](docs/tech/STYLE_GUIDE.md) for brand guidelines
 
 ### Code Quality
 
