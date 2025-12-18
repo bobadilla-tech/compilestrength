@@ -45,7 +45,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://www.linkedin.com/company/compilestrength/?viewAsMember=true" className="text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/company/compilestrength" className="text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
                   About
                 </a>
               </li>
@@ -88,27 +88,12 @@ export function Footer() {
               <a href="https://github.com/bobadilla-tech" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <Github size={20} />
               </a>
-              <a href="https://www.linkedin.com/company/compilestrength/?viewAsMember=true" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/company/compilestrength" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <Linkedin size={20} />
               </a>
             </div>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-border">
-            <div className="flex flex-col gap-4">
-              <h4 className="font-mono font-semibold">Get training tips for engineer-athletes</h4>
-              <form className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                />
-                <button type="submit" className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-accent transition-all duration-200">
-                  Subscribe
-                </button>
-              </form>
-            </div>
-          </div>
         </div>
       </div>
     </footer>
