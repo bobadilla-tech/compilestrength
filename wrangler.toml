@@ -1,4 +1,4 @@
-name = "compilestrength-landing"
+name = "compilestrength-engineers-landing"
 compatibility_date = "2024-12-18"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 main = ".open-next/worker.js"

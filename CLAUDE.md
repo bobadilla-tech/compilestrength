@@ -42,7 +42,7 @@ npx opennextjs-cloudflare build
 **Location**: `/wrangler.toml`
 
 ```toml
-name = "compilestrength-landing"
+name = "compilestrength-engineers-landing"
 compatibility_date = "2024-12-18"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 main = ".open-next/worker.js"
@@ -55,7 +55,7 @@ enabled = true
 
 **Key fields**:
 
-- `name`: Worker name (may be overridden by Cloudflare Pages to match project name)
+- `name`: Worker name - must match Cloudflare Pages project name
 - `compatibility_flags`:
   - `nodejs_compat`: **CRITICAL** - Enables Node.js built-in modules (fs, crypto, path, stream, async_hooks, http, https, buffer, util, vm, url, zlib)
   - `global_fetch_strictly_public`: Ensures fetch API works correctly in Cloudflare Workers
@@ -398,12 +398,7 @@ compilestrength-engineers-landing/
    - Move ESLint config to `.eslintrc.json` if needed
    - Currently set to `ignoreDuringBuilds: true`
 
-4. **Worker name mismatch**:
-   - Config uses "compilestrength-landing"
-   - Cloudflare Pages expects "compilestrength-engineers-landing"
-   - Cloudflare auto-corrects this, not an issue
-
-5. **Vaul peer dependency warnings**: Expects React ^16.8 || ^17.0 || ^18.0, found 18.3.1
+4. **Vaul peer dependency warnings**: Expects React ^16.8 || ^17.0 || ^18.0, found 18.3.1
    - Safe to ignore - React 18.3.1 is compatible
    - Warning is due to peer dependency range specification
 
