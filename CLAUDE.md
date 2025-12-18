@@ -43,15 +43,23 @@ npx opennextjs-cloudflare build
 ```toml
 name = "compilestrength-landing"
 compatibility_date = "2024-12-18"
-compatibility_flags = ["nodejs_compat"]
+compatibility_flags = ["nodejs_compat_v2"]
 main = ".open-next/worker.js"
+
+[observability]
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true
 ```
 
 **Key fields**:
 
 - `name`: Worker name (may be overridden by Cloudflare Pages to match project name)
-- `compatibility_flags = ["nodejs_compat"]`: **CRITICAL** - Required for Node.js built-in modules (fs, crypto, path, stream, async_hooks, http, https, buffer, util, vm, url, zlib)
+- `compatibility_flags = ["nodejs_compat_v2"]`: **CRITICAL** - Required for Node.js built-in modules with better async/streaming support (fs, crypto, path, stream, async_hooks, http, https, buffer, util, vm, url, zlib). Use v2 for improved compatibility with Next.js.
 - `main`: Entry point to the OpenNext-generated worker script
+- `observability.logs`: Enables comprehensive logging for debugging (100% sampling rate, invocation logs, persistent storage)
 
 #### 2. open-next.config.ts
 
@@ -125,10 +133,12 @@ main = ".open-next/worker.js"
 **Fix**: Add to wrangler.toml:
 
 ```toml
-compatibility_flags = ["nodejs_compat"]
+compatibility_flags = ["nodejs_compat_v2"]
 ```
 
-**Why**: Cloudflare Workers runtime doesn't include Node.js modules by default. The `nodejs_compat` flag enables Node.js built-in module support required by Next.js server-side code.
+**Why**: Cloudflare Workers runtime doesn't include Node.js modules by default. The `nodejs_compat_v2` flag enables Node.js built-in module support with improved async/streaming capabilities required by Next.js server-side code.
+
+**Note**: Use `nodejs_compat_v2` instead of `nodejs_compat` for better Next.js compatibility and to avoid "Server failed to respond" errors.
 
 ---
 
@@ -147,6 +157,48 @@ Error: invalid command, expected 'build' | 'preview' | 'deploy'
 ```bash
 npx opennextjs-cloudflare build
 ```
+
+---
+
+### Error 4: "Server failed to respond" in production
+
+**Symptom**:
+
+```json
+{
+  "message": "Server failed to respond.",
+  "details": {}
+}
+```
+
+**Cause**: Runtime error in Cloudflare Worker, often due to:
+1. Using `nodejs_compat` instead of `nodejs_compat_v2`
+2. Missing observability logs configuration
+3. Async/streaming compatibility issues with Next.js
+
+**Fix**: Update wrangler.toml:
+
+```toml
+compatibility_flags = ["nodejs_compat_v2"]
+
+[observability]
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true
+```
+
+**Why**:
+- `nodejs_compat_v2` provides better async/streaming support needed by Next.js 16
+- Observability logs help debug runtime errors
+- Check Cloudflare Pages deployment logs for specific error details
+
+**Debugging**:
+1. Check Cloudflare Pages deployment logs in dashboard
+2. Look for JavaScript runtime errors in worker execution
+3. Verify all environment variables are set
+4. Test locally with `npx opennextjs-cloudflare preview`
 
 ## SEO Configuration
 
