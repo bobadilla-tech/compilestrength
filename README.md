@@ -91,7 +91,7 @@ This project is configured for **Cloudflare Pages** deployment (supports private
 2. **Configure Build Settings**:
    ```
    Framework preset: Next.js
-   Build command: npx opennextjs-cloudflare
+   Build command: npx opennextjs-cloudflare build
    Build output directory: .worker-next/worker
    Root directory: /
    Node.js version: 18
