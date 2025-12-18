@@ -9,12 +9,13 @@ This is the landing page for CompileStrength, deployed at `engineers.compilestre
 
 ## Tech Stack
 
-- **Framework**: Next.js 16.0.10 (App Router, Turbopack)
+- **Framework**: Next.js 15.5.9 (App Router) - Using v15 for Cloudflare compatibility
+- **React**: 18.3.1 (Next.js 15 requires React 18)
 - **Deployment**: Cloudflare Pages with OpenNext Cloudflare adapter
 - **Package Manager**: pnpm
 - **Styling**: Tailwind CSS 4.x
 - **UI Components**: Radix UI
-- **TypeScript**: 5.0.2 (should upgrade to 5.1.0+)
+- **TypeScript**: 5.x
 
 ## Deployment Configuration
 
@@ -43,23 +44,24 @@ npx opennextjs-cloudflare build
 ```toml
 name = "compilestrength-landing"
 compatibility_date = "2024-12-18"
-compatibility_flags = ["nodejs_compat_v2"]
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 main = ".open-next/worker.js"
 
+upload_source_maps = true
+
 [observability]
-[observability.logs]
 enabled = true
-head_sampling_rate = 1
-invocation_logs = true
-persist = true
 ```
 
 **Key fields**:
 
 - `name`: Worker name (may be overridden by Cloudflare Pages to match project name)
-- `compatibility_flags = ["nodejs_compat_v2"]`: **CRITICAL** - Required for Node.js built-in modules with better async/streaming support (fs, crypto, path, stream, async_hooks, http, https, buffer, util, vm, url, zlib). Use v2 for improved compatibility with Next.js.
+- `compatibility_flags`:
+  - `nodejs_compat`: **CRITICAL** - Enables Node.js built-in modules (fs, crypto, path, stream, async_hooks, http, https, buffer, util, vm, url, zlib)
+  - `global_fetch_strictly_public`: Ensures fetch API works correctly in Cloudflare Workers
 - `main`: Entry point to the OpenNext-generated worker script
-- `observability.logs`: Enables comprehensive logging for debugging (100% sampling rate, invocation logs, persistent storage)
+- `observability.enabled`: Enables logging for debugging
+- `upload_source_maps`: Uploads source maps for better error debugging
 
 #### 2. open-next.config.ts
 
@@ -79,7 +81,9 @@ export default defineCloudflareConfig({
 **Key dependencies**:
 
 - `@opennextjs/cloudflare: 1.3.0` - Cloudflare adapter for Next.js
-- `next: 16.0.10` - Next.js framework
+- `next: 15.5.9` - Next.js framework (v15 for Cloudflare compatibility)
+- `react: 18.3.1` - React library (v18 required by Next.js 15)
+- `react-dom: 18.3.1` - React DOM library
 - `wrangler: 4.56.0` - Cloudflare Workers CLI
 
 **Scripts**:
@@ -133,12 +137,10 @@ main = ".open-next/worker.js"
 **Fix**: Add to wrangler.toml:
 
 ```toml
-compatibility_flags = ["nodejs_compat_v2"]
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 ```
 
-**Why**: Cloudflare Workers runtime doesn't include Node.js modules by default. The `nodejs_compat_v2` flag enables Node.js built-in module support with improved async/streaming capabilities required by Next.js server-side code.
-
-**Note**: Use `nodejs_compat_v2` instead of `nodejs_compat` for better Next.js compatibility and to avoid "Server failed to respond" errors.
+**Why**: Cloudflare Workers runtime doesn't include Node.js modules by default. The `nodejs_compat` flag enables Node.js built-in module support required by Next.js server-side code. The `global_fetch_strictly_public` flag ensures fetch API works correctly.
 
 ---
 
@@ -172,26 +174,26 @@ npx opennextjs-cloudflare build
 ```
 
 **Cause**: Runtime error in Cloudflare Worker, often due to:
-1. Using `nodejs_compat` instead of `nodejs_compat_v2`
+1. Missing `nodejs_compat` or `global_fetch_strictly_public` flags
 2. Missing observability logs configuration
 3. Async/streaming compatibility issues with Next.js
 
 **Fix**: Update wrangler.toml:
 
 ```toml
-compatibility_flags = ["nodejs_compat_v2"]
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 
 [observability]
-[observability.logs]
 enabled = true
-head_sampling_rate = 1
-invocation_logs = true
-persist = true
+
+upload_source_maps = true
 ```
 
 **Why**:
-- `nodejs_compat_v2` provides better async/streaming support needed by Next.js 16
+- `nodejs_compat` provides Node.js built-in module support needed by Next.js
+- `global_fetch_strictly_public` ensures fetch API works correctly in Workers
 - Observability logs help debug runtime errors
+- Source maps provide better error stack traces
 - Check Cloudflare Pages deployment logs for specific error details
 
 **Debugging**:
@@ -234,7 +236,33 @@ const nextConfig = {
 }
 ```
 
-**Why**: The stub file satisfies Next.js's instrumentation loader without actually implementing any instrumentation (which isn't supported in Cloudflare Workers). Setting `instrumentationHook: false` tells Next.js not to expect instrumentation functionality.
+**Why**: The stub file satisfies Next.js's instrumentation loader without actually implementing any instrumentation (which isn't supported in Cloudflare Workers).
+
+**Note**: In Next.js 15, instrumentation.ts is available by default and the `experimental.instrumentationHook` config option was removed. The stub file is still needed for Cloudflare Workers compatibility.
+
+---
+
+### Error 6: Next.js 16 Compatibility Issues with Cloudflare
+
+**Symptom**: Various runtime errors, instrumentation hook failures, or build/deployment issues with Next.js 16
+
+**Cause**: Next.js 16 (released December 2024) has compatibility issues with Cloudflare Workers and OpenNext. The framework introduced changes that aren't fully supported in the edge runtime environment yet.
+
+**Fix**: Downgrade to Next.js 15.5.9 (latest stable v15):
+
+```bash
+pnpm remove next react react-dom @types/react @types/react-dom
+pnpm add next@15.5.9 react@^18 react-dom@^18
+pnpm add -D @types/react@^18 @types/react-dom@^18
+```
+
+**Why**:
+- Next.js 16 requires React 19 which has compatibility issues with some edge runtimes
+- Next.js 15 is the recommended version for Cloudflare Workers deployments
+- Next.js 15 requires React 18 (not React 19)
+- OpenNext has been thoroughly tested with Next.js 15
+
+**Important**: Always use Next.js 15.x for Cloudflare Pages deployments until OpenNext officially supports Next.js 16.
 
 ## SEO Configuration
 
@@ -358,36 +386,39 @@ compilestrength-engineers-landing/
 
 ## Known Warnings (Non-blocking)
 
-1. **TypeScript version**: 5.0.2 below recommended 5.1.0
+1. **Next.js version available**: Build logs may show "16.x is available"
+   - **DO NOT UPGRADE** - Next.js 16 is not compatible with Cloudflare Workers yet
+   - Stay on Next.js 15.5.9 for production stability
 
-   - Not a deployment blocker
-   - Consider upgrading to 5.1.0+
+2. **React version available**: Package manager may suggest React 19
+   - **DO NOT UPGRADE** - Next.js 15 requires React 18
+   - Stay on React 18.3.1
 
-2. **ESLint config in next.config.mjs**: Deprecated
-
-   - Move ESLint config to `.eslintrc.json`
-
-3. **TURBOPACK define warning**: Suspicious assignment
-
-   - Warning from Next.js internals, not our code
-   - Safe to ignore
+3. **ESLint config in next.config.mjs**: Deprecated
+   - Move ESLint config to `.eslintrc.json` if needed
+   - Currently set to `ignoreDuringBuilds: true`
 
 4. **Worker name mismatch**:
    - Config uses "compilestrength-landing"
    - Cloudflare Pages expects "compilestrength-engineers-landing"
    - Cloudflare auto-corrects this, not an issue
 
+5. **Vaul peer dependency warnings**: Expects React ^16.8 || ^17.0 || ^18.0, found 18.3.1
+   - Safe to ignore - React 18.3.1 is compatible
+   - Warning is due to peer dependency range specification
+
 ## Troubleshooting Checklist
 
 If deployment fails:
 
 1. ✅ Check `wrangler.toml` has `main = ".open-next/worker.js"`
-2. ✅ Check `wrangler.toml` has `compatibility_flags = ["nodejs_compat"]`
+2. ✅ Check `wrangler.toml` has `compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]`
 3. ✅ Check build command is `npx opennextjs-cloudflare build`
 4. ✅ Check build output directory is `.open-next`
 5. ✅ Verify OpenNext build succeeds: Look for "Worker saved in `.open-next/worker.js` 🚀"
 6. ✅ Check for Node.js module resolution errors in wrangler deploy logs
 7. ✅ Ensure `@opennextjs/cloudflare` is in dependencies (not devDependencies)
+8. ✅ Verify using Next.js 15.x (NOT 16.x) and React 18.x (NOT 19.x)
 
 ## Development Workflow
 
