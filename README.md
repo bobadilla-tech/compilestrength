@@ -99,23 +99,20 @@ This landing page is part of the CompileStrength SaaS ecosystem:
 
 CompileStrength™ is a trademark of Eliaz Bobadilla. This project is developed under the "Bobadilla Tech" brand (GitHub organization) but is wholly owned by Eliaz Bobadilla as an individual.
 
-### Key Points:
+### Key Points
 
 - All source code, designs, and intellectual property are owned by Eliaz Bobadilla
-- Users retain ownership of their personal workout data
-- AI-generated workout programs are provided under the service license
-- See full copyright details: [COPYRIGHT.md](../compilestrength/docs/legal/COPYRIGHT.md)
+- This is the marketing landing page for the CompileStrength SaaS platform
+- Full legal documentation available at the main application
 
 ### Third-Party Licenses
 
-This project uses open-source components under their respective licenses:
+This landing page uses open-source components under their respective licenses:
 - Next.js (MIT)
 - React (MIT)
 - Tailwind CSS (MIT)
 - Radix UI (MIT)
 - Lucide Icons (ISC)
-
-For complete third-party license information, see: [THIRD_PARTY_LICENSES.md](../compilestrength/docs/legal/THIRD_PARTY_LICENSES.md)
 
 ## Contact
 
