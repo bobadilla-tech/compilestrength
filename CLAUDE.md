@@ -213,32 +213,27 @@ NextJS request failed. Error: An error occurred while loading the instrumentatio
 Failed to prepare server Error: An error occurred while loading the instrumentation hook
 ```
 
-**Cause**: Next.js 13+ includes instrumentation hooks feature that's not fully compatible with Cloudflare Workers/OpenNext environment. Next.js expects an instrumentation file but it's not properly handled in the edge runtime.
+**Cause**: Next.js 15 tries to load an instrumentation file if it exists, but OpenNext doesn't properly bundle it for Cloudflare Workers, causing runtime errors.
 
-**Fix**: Create a stub `instrumentation.ts` file in the project root:
+**Fix**: **DO NOT create an instrumentation.ts file.** If it exists, remove it:
 
-```typescript
-// instrumentation.ts
-export async function register() {
-  // No-op for Cloudflare Workers environment
-  // Instrumentation features are not supported in edge runtime
-}
+```bash
+rm instrumentation.ts
 ```
 
-Also update `next.config.mjs`:
+Then rebuild:
 
-```javascript
-const nextConfig = {
-  // ... other config
-  experimental: {
-    instrumentationHook: false,
-  },
-}
+```bash
+npx opennextjs-cloudflare build
 ```
 
-**Why**: The stub file satisfies Next.js's instrumentation loader without actually implementing any instrumentation (which isn't supported in Cloudflare Workers).
+**Why**:
+- Next.js 15 has instrumentation support enabled by default
+- OpenNext for Cloudflare doesn't properly handle instrumentation files in the edge runtime
+- The working `compilestrength` project does NOT have an instrumentation file
+- Simply not having the file prevents Next.js from trying to load it
 
-**Note**: In Next.js 15, instrumentation.ts is available by default and the `experimental.instrumentationHook` config option was removed. The stub file is still needed for Cloudflare Workers compatibility.
+**Important**: Do not add `experimental.instrumentationHook: false` to next.config.mjs - this option was removed in Next.js 15 and will cause a warning.
 
 ---
 
@@ -376,12 +371,13 @@ compilestrength-engineers-landing/
 │   ├── favicon.ico         # Favicon
 │   ├── eliaz.jpeg          # Team photo
 │   └── leonardo.jpeg       # Team photo
-├── instrumentation.ts      # Stub for Cloudflare Workers compatibility
 ├── wrangler.toml           # Cloudflare Workers config
 ├── open-next.config.ts     # OpenNext configuration
 ├── next.config.mjs         # Next.js configuration
 ├── package.json            # Dependencies
 └── CLAUDE.md               # This file
+
+**Note**: Do NOT include `instrumentation.ts` - it causes errors with OpenNext on Cloudflare Workers.
 ```
 
 ## Known Warnings (Non-blocking)
