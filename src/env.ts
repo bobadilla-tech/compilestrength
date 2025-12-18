@@ -28,5 +28,5 @@ export const env = createEnv({
 		NEXT_PUBLIC_BETTER_AUTH_URL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL,
 		NGROK_DOMAIN: process.env.NGROK_DOMAIN,
 	},
-	skipValidation: true,
+	skipValidation: false,
 });
