@@ -46,7 +46,6 @@ export function Footer() {
 						</ul>
 					</div>
 
-					{/* Legal */}
 					<div>
 						<h3 className="text-white font-semibold mb-3">Legal</h3>
 						<ul className="space-y-2 text-sm">
@@ -70,20 +69,29 @@ export function Footer() {
 					</div>
 				</div>
 
-				{/* Bottom Bar */}
 				<div className="mt-8 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row justify-between items-center gap-4">
 					<p className="text-zinc-500 text-sm">
 						&copy; {new Date().getFullYear()} CompileStrength. All rights
 						reserved.
 					</p>
-					<a
-						href="https://twitter.com/compilestrength"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-zinc-400 hover:text-white transition-colors text-sm"
-					>
-						@compilestrength
-					</a>
+					<div className="flex items-center gap-4 text-sm">
+						<a
+							href="https://linkedin.com/company/compilestrength"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-zinc-400 hover:text-white transition-colors"
+						>
+							LinkedIn
+						</a>
+						<a
+							href="https://github.com/compilestrength"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-zinc-400 hover:text-white transition-colors"
+						>
+							GitHub
+						</a>
+					</div>
 				</div>
 			</div>
 		</footer>

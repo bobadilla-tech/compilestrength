@@ -15,7 +15,10 @@ const organizationSchema = {
 	logo: "https://compilestrength.com/logo.png",
 	description:
 		"AI-powered workout programming for evidence-based lifters. Train smarter with personalized programs built on exercise science.",
-	sameAs: ["https://twitter.com/compilestrength"],
+	sameAs: [
+		"https://linkedin.com/company/compilestrength",
+		"https://github.com/compilestrength",
+	],
 };
 
 const softwareApplicationSchema = {
