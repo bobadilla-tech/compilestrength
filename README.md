@@ -25,7 +25,7 @@ CompileStrength is a science-based fitness platform that uses AI to generate per
 - **Styling**: Tailwind CSS 4.x
 - **UI Components**: Radix UI primitives
 - **Icons**: Lucide React
-- **Deployment**: Vercel
+- **Deployment**: Cloudflare Pages (with OpenNext Cloudflare adapter)
 
 ## Project Structure
 
@@ -73,6 +73,88 @@ npm start
 ```
 
 The site will be available at `http://localhost:3000`
+
+## Deployment
+
+This project is configured for **Cloudflare Pages** deployment (supports private GitHub repos in organizations).
+
+### Deploy to Cloudflare Pages
+
+#### Option 1: Cloudflare Dashboard (Recommended)
+
+1. **Connect Repository**:
+   - Go to [Cloudflare Pages](https://dash.cloudflare.com/pages)
+   - Click "Create a project" → "Connect to Git"
+   - Authorize and select your GitHub organization
+   - Choose the `compilestrength-engineers-landing` repository
+
+2. **Configure Build Settings**:
+   ```
+   Framework preset: Next.js
+   Build command: npx opennextjs-cloudflare build
+   Build output directory: .worker-next
+   Root directory: /
+   Node.js version: 18
+   Environment variables: (none required for landing page)
+   ```
+
+3. **Deploy**:
+   - Click "Save and Deploy"
+   - First deployment takes 2-3 minutes
+   - Subsequent deployments are faster
+
+4. **Custom Domain**:
+   - Go to project → "Custom domains"
+   - Add `compilestrength.com`
+   - Cloudflare will automatically configure DNS
+
+#### Option 2: CLI Deployment
+
+```bash
+# Install dependencies
+npm install
+
+# Build and deploy to Cloudflare
+npm run deploy
+
+# Or preview locally
+npm run preview
+```
+
+### Environment Variables
+
+No environment variables are required for the landing page. If needed in the future:
+
+```bash
+# Set via Wrangler CLI
+wrangler pages secret put VARIABLE_NAME
+
+# Or via Cloudflare Dashboard:
+# Project → Settings → Environment Variables
+```
+
+### Build Output
+
+The build creates static assets optimized for Cloudflare's edge network:
+- **Output directory**: `.worker-next`
+- **Adapter**: `@opennextjs/cloudflare` converts Next.js to Cloudflare Workers
+- **Edge runtime**: Runs on Cloudflare's V8 Workers globally
+
+### Continuous Deployment
+
+Cloudflare Pages automatically deploys:
+- ✅ **Production**: Pushes to `main` branch
+- ✅ **Preview**: Pull requests (generates preview URLs)
+- ✅ **Rollback**: One-click rollback to any previous deployment
+
+### Why Cloudflare Pages?
+
+- ✅ **Private Repos**: Full support for GitHub organization private repositories (unlike Vercel free tier)
+- ✅ **Global CDN**: 300+ edge locations worldwide
+- ✅ **Zero Config SSL**: Automatic HTTPS with Cloudflare SSL
+- ✅ **Fast Builds**: Typically 1-2 minutes
+- ✅ **Generous Free Tier**: 500 builds/month, unlimited bandwidth
+- ✅ **Preview Deployments**: Automatic preview URLs for PRs
 
 ## SEO Features
 
