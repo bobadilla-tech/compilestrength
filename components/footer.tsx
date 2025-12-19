@@ -61,12 +61,12 @@ export function Footer() {
             <h4 className="font-mono font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="https://engineers.compilestrength.com/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://compilestrength.com/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
                   Privacy
                 </a>
               </li>
               <li>
-                <a href="https://engineers.compilestrength.com/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://compilestrength.com/terms" className="text-muted-foreground hover:text-foreground transition-colors">
                   Terms
                 </a>
               </li>
