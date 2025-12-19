@@ -9,8 +9,8 @@ This is the landing page for CompileStrength, deployed at `engineers.compilestre
 
 ## Tech Stack
 
-- **Framework**: Next.js 15.5.9 (App Router) - Using v15 for Cloudflare compatibility
-- **React**: 18.3.1 (Next.js 15 requires React 18)
+- **Framework**: Next.js 15.3.3 (App Router) - Using v15 for Cloudflare compatibility
+- **React**: 19.0.0 (Compatible with Next.js 15.3.3)
 - **Deployment**: Cloudflare Pages with OpenNext Cloudflare adapter
 - **Package Manager**: pnpm
 - **Styling**: Tailwind CSS 4.x
@@ -81,9 +81,9 @@ export default defineCloudflareConfig({
 **Key dependencies**:
 
 - `@opennextjs/cloudflare: 1.3.0` - Cloudflare adapter for Next.js
-- `next: 15.5.9` - Next.js framework (v15 for Cloudflare compatibility)
-- `react: 18.3.1` - React library (v18 required by Next.js 15)
-- `react-dom: 18.3.1` - React DOM library
+- `next: 15.3.3` - Next.js framework (v15 for Cloudflare compatibility)
+- `react: 19.0.0` - React library (v19 compatible with Next.js 15.3.3)
+- `react-dom: 19.0.0` - React DOM library
 - `wrangler: 4.56.0` - Cloudflare Workers CLI
 
 **Scripts**:
@@ -243,19 +243,19 @@ npx opennextjs-cloudflare build
 
 **Cause**: Next.js 16 (released December 2024) has compatibility issues with Cloudflare Workers and OpenNext. The framework introduced changes that aren't fully supported in the edge runtime environment yet.
 
-**Fix**: Downgrade to Next.js 15.5.9 (latest stable v15):
+**Fix**: Use Next.js 15.3.3 with React 19.0.0 (matches main CompileStrength project):
 
 ```bash
 pnpm remove next react react-dom @types/react @types/react-dom
-pnpm add next@15.5.9 react@^18 react-dom@^18
-pnpm add -D @types/react@^18 @types/react-dom@^18
+pnpm add next@15.3.3 react@19.0.0 react-dom@19.0.0
+pnpm add -D @types/react@19.0.10 @types/react-dom@19.0.4
 ```
 
 **Why**:
-- Next.js 16 requires React 19 which has compatibility issues with some edge runtimes
+- Next.js 15.3.3 with React 19.0.0 is the tested configuration used by the main CompileStrength project
 - Next.js 15 is the recommended version for Cloudflare Workers deployments
-- Next.js 15 requires React 18 (not React 19)
 - OpenNext has been thoroughly tested with Next.js 15
+- This configuration ensures compatibility between landing page and main app
 
 **Important**: Always use Next.js 15.x for Cloudflare Pages deployments until OpenNext officially supports Next.js 16.
 
@@ -384,19 +384,19 @@ compilestrength-engineers-landing/
 
 1. **Next.js version available**: Build logs may show "16.x is available"
    - **DO NOT UPGRADE** - Next.js 16 is not compatible with Cloudflare Workers yet
-   - Stay on Next.js 15.5.9 for production stability
+   - Stay on Next.js 15.3.3 for production stability
 
-2. **React version available**: Package manager may suggest React 19
-   - **DO NOT UPGRADE** - Next.js 15 requires React 18
-   - Stay on React 18.3.1
+2. **React version management**: Project uses React 19.0.0
+   - This is the tested configuration for Next.js 15.3.3
+   - Matches the main CompileStrength project dependencies
 
 3. **ESLint config in next.config.mjs**: Deprecated
    - Move ESLint config to `.eslintrc.json` if needed
    - Currently set to `ignoreDuringBuilds: true`
 
-4. **Vaul peer dependency warnings**: Expects React ^16.8 || ^17.0 || ^18.0, found 18.3.1
-   - Safe to ignore - React 18.3.1 is compatible
-   - Warning is due to peer dependency range specification
+4. **Vaul peer dependency warnings**: Expects React ^16.8 || ^17.0 || ^18.0, found 19.0.0
+   - Safe to ignore - React 19.0.0 is backward compatible
+   - Warning is due to peer dependency range specification not including React 19
 
 ## Troubleshooting Checklist
 
@@ -409,7 +409,7 @@ If deployment fails:
 5. ✅ Verify OpenNext build succeeds: Look for "Worker saved in `.open-next/worker.js` 🚀"
 6. ✅ Check for Node.js module resolution errors in wrangler deploy logs
 7. ✅ Ensure `@opennextjs/cloudflare` is in dependencies (not devDependencies)
-8. ✅ Verify using Next.js 15.x (NOT 16.x) and React 18.x (NOT 19.x)
+8. ✅ Verify using Next.js 15.3.3 (NOT 16.x) and React 19.0.0
 
 ## Development Workflow
 
