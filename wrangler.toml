@@ -5,5 +5,9 @@ main = ".open-next/worker.js"
 
 upload_source_maps = true
 
+[assets]
+binding = "ASSETS"
+directory = ".open-next/assets"
+
 [observability]
 enabled = true
