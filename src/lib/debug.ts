@@ -6,25 +6,30 @@
 const isDevelopment =
 	process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test";
 
+/**
+ * Development-only debug logging
+ */
 export const debug = {
 	log: (...args: unknown[]) => {
 		if (isDevelopment) {
 			console.log(...args);
 		}
 	},
-	error: (...args: unknown[]) => {
-		if (isDevelopment) {
-			console.error(...args);
-		}
-	},
-	warn: (...args: unknown[]) => {
-		if (isDevelopment) {
-			console.warn(...args);
-		}
-	},
 	info: (...args: unknown[]) => {
 		if (isDevelopment) {
 			console.info(...args);
 		}
+	},
+};
+
+/**
+ * Production logging for errors and warnings
+ */
+export const logger = {
+	error: (...args: unknown[]) => {
+		console.error(...args);
+	},
+	warn: (...args: unknown[]) => {
+		console.warn(...args);
 	},
 };
