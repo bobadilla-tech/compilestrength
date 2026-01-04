@@ -26,7 +26,7 @@ export async function GET() {
 
 		return NextResponse.json(activeSession);
 	} catch (error) {
-		debug.error("Error fetching workout session:", error);
+		logger.error("Error fetching workout session:", error);
 
 		return NextResponse.json(
 			{ error: "Failed to fetch workout session" },
