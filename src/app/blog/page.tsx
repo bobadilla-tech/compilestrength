@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import Link from "next/link";
-import { LandingNavbar } from "@/components/landing-navbar";
+import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 
@@ -25,7 +25,7 @@ export default async function BlogPage() {
 	return (
 		<div className="min-h-screen bg-zinc-950 text-zinc-100">
 			{/* Navbar */}
-			<LandingNavbar isLoggedIn={!!session} />
+			<Navbar showLogo />
 
 			{/* Main Content */}
 			<main className="max-w-4xl mx-auto px-6 py-12">

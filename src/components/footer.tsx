@@ -84,7 +84,7 @@ export function Footer() {
 							LinkedIn
 						</a>
 						<a
-							href="https://github.com/compilestrength"
+							href="https://github.com/bobadilla-tech"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="text-zinc-400 hover:text-white transition-colors"

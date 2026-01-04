@@ -9,10 +9,10 @@ avoid code duplication.
 **DO NOT create navbar components within blog posts.** We already have reusable
 navbar components:
 
-- `@/components/navbar` - Standard navbar with authentication state management
-  (client-side)
-- `@/components/landing-navbar` - Landing page navbar with logo and manual auth
-  props
+- `@/components/navbar` - Unified navbar component with authentication state
+  management (client-side)
+  - Use `<Navbar />` for standard pages (blog posts, calculators, etc.)
+  - Use `<Navbar showLogo />` for landing pages to display the logo
 
 ## Directory Structure
 

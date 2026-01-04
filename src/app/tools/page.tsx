@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import Link from "next/link";
-import { LandingNavbar } from "@/components/landing-navbar";
+import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 
@@ -113,7 +113,7 @@ export default async function ToolsPage() {
 			/>
 
 			{/* Navbar */}
-			<LandingNavbar isLoggedIn={!!session} />
+			<Navbar showLogo />
 
 			{/* Main Content */}
 			<main className="max-w-7xl mx-auto px-6 py-12">
