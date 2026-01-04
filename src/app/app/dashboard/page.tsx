@@ -11,6 +11,7 @@ import {
 	workoutSets,
 } from "@/db/schema";
 import { requireAuth } from "@/lib/auth-utils";
+import { debug } from "@/lib/debug";
 
 interface Exercise {
 	id: string;
@@ -50,7 +51,7 @@ function isWorkoutDay(value: unknown): value is WorkoutDay {
 const getCachedUserRoutines = unstable_cache(
 	async (userId: string) => {
 		try {
-			console.log("📋 Fetching workout routines for user from DB:", userId);
+			debug.log("📋 Fetching workout routines for user from DB:", userId);
 
 			// Get only the most recent active program for dashboard display
 			const programs = await db
