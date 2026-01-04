@@ -13,12 +13,12 @@ const isDevelopment = env.NODE_ENV === "development" || env.NODE_ENV === "test";
 export const debug = {
 	log: (...args: unknown[]) => {
 		if (isDevelopment) {
-			console.log(...args);
+			console.log("[DEBUG]", ...args);
 		}
 	},
 	info: (...args: unknown[]) => {
 		if (isDevelopment) {
-			console.info(...args);
+			console.info("[INFO]", ...args);
 		}
 	},
 };
@@ -28,9 +28,9 @@ export const debug = {
  */
 export const logger = {
 	error: (...args: unknown[]) => {
-		console.error(...args);
+		console.error("[ERROR]", ...args);
 	},
 	warn: (...args: unknown[]) => {
-		console.warn(...args);
+		console.warn("[WARN]", ...args);
 	},
 };

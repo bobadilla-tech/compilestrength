@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUserId } from "@/lib/auth-middleware";
-import { debug, logger } from "@/lib/debug";
+import { logger } from "@/lib/debug";
 import {
 	createWorkoutSession,
 	deleteWorkoutSession,
