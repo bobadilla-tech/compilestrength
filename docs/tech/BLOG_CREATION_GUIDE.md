@@ -45,12 +45,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Your Blog Post Title",
   description: "Brief description of your blog post content.",
-  keywords: [
-    "relevant",
-    "keywords",
-    "for",
-    "seo",
-  ],
+  keywords: ["relevant", "keywords", "for", "seo"],
   openGraph: {
     title: "Your Blog Post Title",
     description: "Brief description of your blog post content.",
@@ -139,17 +134,13 @@ export default async function YourBlogPost() {
         <div className="prose prose-invert prose-zinc max-w-none">
           <div className="space-y-6 text-zinc-300 leading-relaxed">
             {/* Your blog content goes here */}
-            <p className="text-lg">
-              Your opening paragraph...
-            </p>
+            <p className="text-lg">Your opening paragraph...</p>
 
             <h2 className="text-2xl font-bold text-white mt-8 mb-4">
               Section Heading
             </h2>
 
-            <p>
-              Your content...
-            </p>
+            <p>Your content...</p>
 
             {/* Continue with your content structure */}
           </div>
@@ -218,10 +209,8 @@ Use consistent heading styles:
 
 ```typescript
 <pre className="bg-zinc-900 p-4 rounded-lg overflow-x-auto">
-	<code className="text-sm text-zinc-300">
-		// Your code here
-	</code>
-</pre>;
+  <code className="text-sm text-zinc-300">// Your code here</code>
+</pre>
 ```
 
 ## SEO Best Practices

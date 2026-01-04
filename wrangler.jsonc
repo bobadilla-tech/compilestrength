@@ -14,6 +14,7 @@
 	"upload_source_maps": true,
 	"vars": {
 		"BETTER_AUTH_URL": "https://compilestrength.com",
+		"NODE_ENV": "production",
 		"NEXT_PUBLIC_BETTER_AUTH_URL": "https://compilestrength.com"
 	},
 	"keep_vars": true

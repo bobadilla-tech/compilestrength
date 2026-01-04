@@ -17,7 +17,9 @@ export const env = createEnv({
 			.default("development"),
 	},
 	client: {
-		NEXT_PUBLIC_BETTER_AUTH_URL: z.url().default("http://localhost:3000"),
+		NEXT_PUBLIC_BETTER_AUTH_URL: z
+			.url()
+			.default("https://compilestrength.com/"),
 	},
 	runtimeEnv: {
 		NODE_ENV: process.env.NODE_ENV,
