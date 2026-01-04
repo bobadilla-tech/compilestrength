@@ -1,11 +1,9 @@
 /** biome-ignore-all lint/security/noDangerouslySetInnerHtml: SEO */
 
-import { headers } from "next/headers";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
-import { LandingNavbar } from "@/components/landing-navbar";
+import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
-import { auth } from "@/lib/auth";
 
 const organizationSchema = {
 	"@context": "https://schema.org",
@@ -58,10 +56,6 @@ const softwareApplicationSchema = {
 };
 
 export default async function LandingPage() {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
-
 	return (
 		<div className="min-h-screen bg-zinc-950 text-zinc-100">
 			<script
@@ -75,7 +69,7 @@ export default async function LandingPage() {
 				}}
 			/>
 
-			<LandingNavbar isLoggedIn={!!session} />
+			<Navbar showLogo />
 
 			<main className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
 				<div className="text-center space-y-6">
