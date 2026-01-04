@@ -6,13 +6,8 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { env } from "@/env";
 
-const BETTER_AUTH_URL =
-	env.NODE_ENV === "production"
-		? "https://compilestrength.com"
-		: "http://localhost:3000";
-
 export const authClient = createAuthClient({
-	baseURL: BETTER_AUTH_URL,
+	baseURL: env.NEXT_PUBLIC_BETTER_AUTH_URL,
 	plugins: [cloudflareClient()],
 });
 
