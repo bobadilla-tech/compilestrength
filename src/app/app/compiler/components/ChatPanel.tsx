@@ -4,7 +4,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { Loader2, Send, Square } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { debug } from "@/lib/debug";
+import { debug, logger } from "@/lib/debug";
 import type { UserProfile } from "@/schemas";
 import {
 	useWorkoutRoutineActions,
@@ -21,7 +21,7 @@ export function ChatPanel() {
 			debug.log("Message finished:", result);
 		},
 		onError: (error) => {
-			debug.error("Chat error:", error);
+			logger.error("Chat error:", error);
 		},
 	});
 
@@ -57,13 +57,13 @@ export function ChatPanel() {
 					result.programId,
 				);
 			} else {
-				debug.error(
+				logger.error(
 					"❌ Failed to save routine to database:",
 					response.statusText,
 				);
 			}
 		} catch (error) {
-			debug.error("❌ Error saving routine to database:", error);
+			logger.error("❌ Error saving routine to database:", error);
 		}
 	}, []);
 

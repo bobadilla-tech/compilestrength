@@ -3,8 +3,9 @@
  * Logs are only shown when NODE_ENV is 'development' or 'test'
  */
 
-const isDevelopment =
-	process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test";
+import { env } from "@/env";
+
+const isDevelopment = env.NODE_ENV === "development" || env.NODE_ENV === "test";
 
 /**
  * Development-only debug logging
