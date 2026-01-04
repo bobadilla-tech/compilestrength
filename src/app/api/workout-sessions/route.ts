@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAuthenticatedUserId } from "@/lib/auth-middleware";
-import { debug } from "@/lib/debug";
+import { debug, logger } from "@/lib/debug";
 import {
 	createWorkoutSession,
 	deleteWorkoutSession,
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
 			return NextResponse.json({ error: error.message }, { status: 400 });
 		}
 
-		debug.error("Error creating workout session:", error);
+		logger.error("Error creating workout session:", error);
 
 		return createErrorResponse("Failed to create workout session");
 	}
@@ -88,7 +88,7 @@ export async function PATCH(request: Request) {
 		if (error instanceof ValidationError) {
 			return createValidationErrorResponse(error);
 		}
-		debug.error("Error updating workout session:", error);
+		logger.error("Error updating workout session:", error);
 		return createErrorResponse("Failed to update workout session");
 	}
 }
@@ -106,7 +106,8 @@ export async function DELETE(request: Request) {
 		if (error instanceof ValidationError) {
 			return createValidationErrorResponse(error);
 		}
-		debug.error("Error deleting workout session:", error);
+
+		logger.error("Error deleting workout session:", error);
 		return createErrorResponse("Failed to delete workout session");
 	}
 }
