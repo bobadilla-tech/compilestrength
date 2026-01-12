@@ -186,10 +186,15 @@ export default async function ToolsPage() {
 								</div>
 							</Link>
 
-							<div className="border border-zinc-800 p-6 rounded-xl opacity-50 h-full flex flex-col">
-								<h3 className="text-xl font-bold mb-2">Macro Calculator</h3>
-								<p className="text-zinc-400 text-sm flex-1">Coming soon...</p>
-							</div>
+							<Link href="/tools/macro-calculator">
+								<div className="border border-zinc-800 p-6 rounded-xl hover:bg-zinc-900 hover:border-blue-700 transition-all cursor-pointer h-full flex flex-col">
+									<h3 className="text-xl font-bold mb-2">Macro Calculator</h3>
+									<p className="text-zinc-400 text-sm flex-1">
+										Calculate your daily macronutrient targets based on your
+										TDEE and goals
+									</p>
+								</div>
+							</Link>
 						</div>
 					</div>
 				</div>

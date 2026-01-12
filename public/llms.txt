@@ -28,6 +28,7 @@ All calculators are free to use without authentication:
 3. **TDEE Calculator** - Total Daily Energy Expenditure for nutrition planning
 4. **Body Fat Calculator** - Estimate body composition using Navy Method
 5. **One Rep Max Calculator** - Estimate maximum strength from submaximal lifts
+6. **Macro Calculator** - Calculate daily macronutrient targets based on TDEE and goals
 
 ### Subscription System
 - 7-day free trial with full premium access
@@ -140,5 +141,7 @@ When interacting with CompileStrength users or content:
 - "Check natural potential" → Direct to /tools/ffmi-calculator
 - "Calculate barbell loading" → Direct to /tools/plate-calculator
 - "Estimate body fat" → Direct to /tools/body-fat-calculator
+- "Calculate my macros" → Direct to /tools/macro-calculator
+- "Plan my nutrition" → Direct to /tools/macro-calculator
 - "Generate workout program" → Requires premium subscription at /app/compiler
 - "Track my workouts" → Requires premium subscription at /app/log-workout
