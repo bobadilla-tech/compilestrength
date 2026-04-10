@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	turbopack: {},
 	webpack: (config, { isServer }) => {
 		if (isServer) {
 			// Exclude @vercel/og (next/og ImageResponse) from the Worker bundle.
