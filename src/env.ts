@@ -23,7 +23,7 @@ export const env = createEnv({
 	},
 	runtimeEnv: {
 		NODE_ENV: process.env.NODE_ENV,
-		OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+		GOOGLE_GENERATIVE_AI_API_KEY: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
 		DATABASE_URL: process.env.DATABASE_URL,
 		LEMONSQUEEZY_API_KEY: process.env.LEMONSQUEEZY_API_KEY,
 		LEMONSQUEEZY_STORE_ID: process.env.LEMONSQUEEZY_STORE_ID,
