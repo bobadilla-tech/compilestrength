@@ -1,5 +1,6 @@
 "use client";
 
+import { Loader2 } from "lucide-react";
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -20,6 +21,7 @@ interface ConfirmDialogProps {
 	cancelText?: string;
 	onConfirm: () => void;
 	destructive?: boolean;
+	loading?: boolean;
 }
 
 export function ConfirmDialog({
@@ -31,6 +33,7 @@ export function ConfirmDialog({
 	cancelText = "Cancel",
 	onConfirm,
 	destructive = false,
+	loading = false,
 }: ConfirmDialogProps) {
 	return (
 		<AlertDialog open={open} onOpenChange={onOpenChange}>
@@ -40,16 +43,24 @@ export function ConfirmDialog({
 					<AlertDialogDescription>{description}</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
-					<AlertDialogCancel>{cancelText}</AlertDialogCancel>
+					<AlertDialogCancel disabled={loading}>{cancelText}</AlertDialogCancel>
 					<AlertDialogAction
 						onClick={onConfirm}
+						disabled={loading}
 						className={
 							destructive
 								? "bg-destructive text-destructive-foreground hover:bg-destructive/90"
 								: ""
 						}
 					>
-						{confirmText}
+						{loading ? (
+							<>
+								<Loader2 className="h-4 w-4 mr-2 animate-spin" />
+								{confirmText}
+							</>
+						) : (
+							confirmText
+						)}
 					</AlertDialogAction>
 				</AlertDialogFooter>
 			</AlertDialogContent>

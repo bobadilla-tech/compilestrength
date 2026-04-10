@@ -1,6 +1,6 @@
 "use client";
 
-import { Lock, Mail, User } from "lucide-react";
+import { Loader2, Lock, Mail, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -186,9 +186,16 @@ export default function SignUpPage() {
 						<button
 							type="submit"
 							disabled={loading}
-							className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+							className="w-full flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
 						>
-							{loading ? "Creating account..." : "Create Account"}
+							{loading ? (
+								<>
+									<Loader2 className="h-4 w-4 mr-2 animate-spin" />
+									Creating account...
+								</>
+							) : (
+								"Create Account"
+							)}
 						</button>
 					</form>
 

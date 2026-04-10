@@ -1,6 +1,6 @@
 "use client";
 
-import { Lock, Mail } from "lucide-react";
+import { Loader2, Lock, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -123,9 +123,16 @@ export default function LoginPage() {
 						<button
 							type="submit"
 							disabled={loading}
-							className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+							className="w-full flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
 						>
-							{loading ? "Signing in..." : "Sign In"}
+							{loading ? (
+								<>
+									<Loader2 className="h-4 w-4 mr-2 animate-spin" />
+									Signing in...
+								</>
+							) : (
+								"Sign In"
+							)}
 						</button>
 					</form>
 

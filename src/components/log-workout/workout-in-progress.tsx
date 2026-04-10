@@ -5,6 +5,7 @@ import {
 	Circle,
 	Clock,
 	Edit,
+	Loader2,
 	Pause,
 	Play,
 	X,
@@ -56,6 +57,9 @@ export function WorkoutInProgress({
 }: WorkoutInProgressProps) {
 	const router = useRouter();
 	const [showAbortDialog, setShowAbortDialog] = useState(false);
+	const [completingSet, setCompletingSet] = useState<string | null>(null);
+	const [isFinishing, setIsFinishing] = useState(false);
+	const [isAborting, setIsAborting] = useState(false);
 
 	// Temporary debug to see what we have
 	React.useEffect(() => {
@@ -80,6 +84,8 @@ export function WorkoutInProgress({
 	const defaultRestTime = useRestTimerDefault();
 
 	const handleCompleteSet = async (exerciseIdx: number, setIdx: number) => {
+		const key = `${exerciseIdx}-${setIdx}`;
+		setCompletingSet(key);
 		try {
 			await completeSet(exerciseIdx, setIdx);
 
@@ -89,10 +95,13 @@ export function WorkoutInProgress({
 			toast.error(
 				error instanceof Error ? error.message : "Failed to save set",
 			);
+		} finally {
+			setCompletingSet(null);
 		}
 	};
 
 	const handleFinishWorkout = async () => {
+		setIsFinishing(true);
 		try {
 			await finishWorkout();
 			router.push("/app");
@@ -100,10 +109,13 @@ export function WorkoutInProgress({
 			toast.error(
 				error instanceof Error ? error.message : "Failed to finish workout",
 			);
+		} finally {
+			setIsFinishing(false);
 		}
 	};
 
 	const handleAbortWorkout = async () => {
+		setIsAborting(true);
 		try {
 			await abortWorkout();
 			toast.success("Workout aborted");
@@ -116,6 +128,7 @@ export function WorkoutInProgress({
 				error instanceof Error ? error.message : "Failed to abort workout",
 			);
 		} finally {
+			setIsAborting(false);
 			setShowAbortDialog(false);
 		}
 	};
@@ -355,11 +368,16 @@ export function WorkoutInProgress({
 																<Button
 																	size="sm"
 																	className="h-8"
+																	disabled={completingSet === `${exerciseIdx}-${setIdx}`}
 																	onClick={() =>
 																		handleCompleteSet(exerciseIdx, setIdx)
 																	}
 																>
-																	<CheckCircle className="h-3 w-3" />
+																	{completingSet === `${exerciseIdx}-${setIdx}` ? (
+																		<Loader2 className="h-3 w-3 animate-spin" />
+																	) : (
+																		<CheckCircle className="h-3 w-3" />
+																	)}
 																</Button>
 															)}
 														</td>
@@ -398,8 +416,15 @@ export function WorkoutInProgress({
 									Save your workout and view summary
 								</p>
 							</div>
-							<Button size="lg" onClick={handleFinishWorkout}>
-								Finish Workout
+							<Button size="lg" disabled={isFinishing} onClick={handleFinishWorkout}>
+								{isFinishing ? (
+									<>
+										<Loader2 className="h-4 w-4 mr-2 animate-spin" />
+										Finishing...
+									</>
+								) : (
+									"Finish Workout"
+								)}
 							</Button>
 						</div>
 					</CardContent>
@@ -415,6 +440,7 @@ export function WorkoutInProgress({
 				cancelText="Continue Workout"
 				onConfirm={handleAbortWorkout}
 				destructive={true}
+				loading={isAborting}
 			/>
 		</div>
 	);
