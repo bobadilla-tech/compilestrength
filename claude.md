@@ -1,9 +1,4 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with
-code in this repository.
-
-## Project Overview
+# Project Overview
 
 CompileStrength is a full-stack fitness application with an AI-powered workout
 programming system designed for science-based lifters. Built with Next.js 15,
@@ -372,6 +367,7 @@ When creating new calculator or tool pages in `src/app/tools/`, you MUST:
 5. **Reference example**: [src/app/tools/plate-calculator/layout.tsx](src/app/tools/plate-calculator/layout.tsx)
 
 **SEO Checklist for New Tools:**
+
 - [ ] Title under 60 chars with primary keyword
 - [ ] Description 150-160 chars with keywords
 - [ ] OpenGraph image dimensions: 1200x630
