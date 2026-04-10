@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { getAuthenticatedUserId } from "@/lib/auth-middleware";
+import {
+	AuthenticationError,
+	createUnauthorizedResponse,
+	getAuthenticatedUserId,
+} from "@/lib/auth-middleware";
 import { logger } from "@/lib/debug";
 import {
 	createWorkoutSession,
@@ -26,6 +30,10 @@ export async function GET() {
 
 		return NextResponse.json(activeSession);
 	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			return createUnauthorizedResponse();
+		}
+
 		logger.error("Error fetching workout session:", error);
 
 		return NextResponse.json(
@@ -49,6 +57,10 @@ export async function POST(request: Request) {
 
 		return NextResponse.json(newSession);
 	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			return createUnauthorizedResponse();
+		}
+
 		if (error instanceof ValidationError) {
 			return createValidationErrorResponse(error);
 		}
@@ -85,6 +97,10 @@ export async function PATCH(request: Request) {
 
 		return NextResponse.json(updatedSession);
 	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			return createUnauthorizedResponse();
+		}
+
 		if (error instanceof ValidationError) {
 			return createValidationErrorResponse(error);
 		}
@@ -103,6 +119,10 @@ export async function DELETE(request: Request) {
 
 		return NextResponse.json({ success: true });
 	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			return createUnauthorizedResponse();
+		}
+
 		if (error instanceof ValidationError) {
 			return createValidationErrorResponse(error);
 		}

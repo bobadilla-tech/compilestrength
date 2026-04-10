@@ -2,10 +2,13 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 
-/**
- * Get authenticated user ID by validating session
- * This is used in API routes that are pre-filtered by middleware for session cookies
- */
+export class AuthenticationError extends Error {
+	constructor(message = "Unauthorized") {
+		super(message);
+		this.name = "AuthenticationError";
+	}
+}
+
 export async function getAuthenticatedUserId(): Promise<string> {
 	try {
 		const session = await auth.api.getSession({
@@ -13,19 +16,20 @@ export async function getAuthenticatedUserId(): Promise<string> {
 		});
 
 		if (!session?.user?.id) {
-			throw new Error("User session not found or invalid");
+			throw new AuthenticationError();
 		}
 
 		return session.user.id;
 	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			throw error;
+		}
+
 		console.error("Authentication error:", error);
-		throw new Error("Authentication failed");
+		throw new AuthenticationError("Authentication failed");
 	}
 }
 
-/**
- * Create standardized unauthorized response
- */
-export function createUnauthorizedResponse() {
-	return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+export function createUnauthorizedResponse(message = "Unauthorized") {
+	return NextResponse.json({ error: message }, { status: 401 });
 }

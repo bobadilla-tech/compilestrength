@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { getAuthenticatedUserId } from "@/lib/auth-middleware";
+import {
+	AuthenticationError,
+	createUnauthorizedResponse,
+	getAuthenticatedUserId,
+} from "@/lib/auth-middleware";
 import { getActiveWorkoutProgramsByUserId } from "@/lib/queries";
 
 export async function GET() {
@@ -9,6 +13,10 @@ export async function GET() {
 
 		return NextResponse.json(programsWithDetails);
 	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			return createUnauthorizedResponse();
+		}
+
 		console.error("Error fetching workout programs:", error);
 		return NextResponse.json(
 			{ error: "Failed to fetch workout programs" },

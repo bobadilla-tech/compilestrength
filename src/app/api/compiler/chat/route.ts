@@ -9,11 +9,18 @@ import {
 	BODYBUILDING_SYSTEM_PROMPT,
 	bodybuildingTools,
 } from "@/agents/bodybuilding";
+import {
+	AuthenticationError,
+	createUnauthorizedResponse,
+	getAuthenticatedUserId,
+} from "@/lib/auth-middleware";
 
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
 	try {
+		await getAuthenticatedUserId();
+
 		const {
 			messages,
 			agentType = "bodybuilding",
@@ -49,6 +56,10 @@ export async function POST(req: Request) {
 			},
 		});
 	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			return createUnauthorizedResponse();
+		}
+
 		console.error("Compiler API error:", error);
 		return new Response("Internal server error", { status: 500 });
 	}

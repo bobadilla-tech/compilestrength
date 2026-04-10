@@ -1,4 +1,8 @@
-import { getAuthenticatedUserId } from "@/lib/auth-middleware";
+import {
+	AuthenticationError,
+	createUnauthorizedResponse,
+	getAuthenticatedUserId,
+} from "@/lib/auth-middleware";
 import { getRoutinesByUserId } from "@/lib/queries";
 
 export async function GET() {
@@ -11,6 +15,10 @@ export async function GET() {
 			routines: routinesWithDetails,
 		});
 	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			return createUnauthorizedResponse();
+		}
+
 		console.error("Get routines API error:", error);
 		return new Response("Failed to fetch workout routines", { status: 500 });
 	}

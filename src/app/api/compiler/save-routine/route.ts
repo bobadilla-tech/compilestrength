@@ -1,5 +1,9 @@
 import type { NextRequest } from "next/server";
-import { getAuthenticatedUserId } from "@/lib/auth-middleware";
+import {
+	AuthenticationError,
+	createUnauthorizedResponse,
+	getAuthenticatedUserId,
+} from "@/lib/auth-middleware";
 import { transformTimestamps } from "@/lib/date-transform";
 import {
 	createErrorResponse,
@@ -27,6 +31,10 @@ export async function POST(req: NextRequest) {
 			"Workout routine saved successfully",
 		);
 	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			return createUnauthorizedResponse();
+		}
+
 		if (error instanceof ValidationError) {
 			return createValidationErrorResponse(error);
 		}
