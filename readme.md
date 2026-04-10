@@ -6,12 +6,11 @@
 
 # CompileStrength
 
-[![Live](https://img.shields.io/badge/Live-compilestrength.com-gold)](https://compilestrength.com)
 [![Docs](https://img.shields.io/badge/Docs-docs/tech-blue)](./docs/tech/ONBOARDING.md)
 
 ## What's CompileStrength?
 
-A full-stack fitness app with an AI-powered workout compiler for science-based lifters. Users chat with a bodybuilding agent that generates personalized programs, tracks sessions, and adapts over time. Gated behind a subscription with a 7-day trial.
+A full-stack fitness app with an AI-powered workout compiler for science-based lifters. Users chat with a bodybuilding agent that generates personalized programs, tracks sessions, and adapts over time.
 
 Runs at the edge on Cloudflare Workers with zero cold starts.
 
