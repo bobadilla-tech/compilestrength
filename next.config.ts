@@ -16,6 +16,17 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	webpack: (config, { isServer }) => {
+		if (isServer) {
+			// Exclude @vercel/og (next/og ImageResponse) from the Worker bundle.
+			// We don't use ImageResponse, and the wasm files add ~2.2 MB uncompressed.
+			config.resolve.alias = {
+				...config.resolve.alias,
+				"next/dist/compiled/@vercel/og": false,
+			};
+		}
+		return config;
+	},
 };
 
 export default nextConfig;
