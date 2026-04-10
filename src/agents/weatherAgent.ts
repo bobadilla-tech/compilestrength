@@ -1,8 +1,9 @@
+import { google } from "@ai-sdk/google";
 import { Experimental_Agent as Agent, stepCountIs, tool } from "ai";
 import { z } from "zod";
 
 export const weatherAgent = new Agent({
-	model: "openai/gpt-4o",
+	model: google("gemini-2.0-flash-latest"),
 	tools: {
 		weather: tool({
 			description: "Get the weather in a location (in Fahrenheit)",

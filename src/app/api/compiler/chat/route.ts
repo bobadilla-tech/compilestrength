@@ -1,4 +1,4 @@
-import { openai } from "@ai-sdk/openai";
+import { google } from "@ai-sdk/google";
 import {
 	convertToModelMessages,
 	stepCountIs,
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 		}
 
 		const result = streamText({
-			model: openai("gpt-4o"),
+			model: google("gemini-2.0-flash-latest"),
 			system: BODYBUILDING_SYSTEM_PROMPT,
 			messages: convertToModelMessages(messages),
 			tools: bodybuildingTools,
