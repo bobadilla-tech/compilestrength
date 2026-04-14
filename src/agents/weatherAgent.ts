@@ -2,8 +2,11 @@ import { google } from "@ai-sdk/google";
 import { Experimental_Agent as Agent, stepCountIs, tool } from "ai";
 import { z } from "zod";
 
+const modelName =
+	process.env.GOOGLE_GENERATIVE_AI_MODEL?.trim() || "gemini-flash-latest";
+
 export const weatherAgent = new Agent({
-	model: google("gemini-2.0-flash-latest"),
+	model: google(modelName),
 	tools: {
 		weather: tool({
 			description: "Get the weather in a location (in Fahrenheit)",

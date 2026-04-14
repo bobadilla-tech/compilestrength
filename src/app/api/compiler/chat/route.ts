@@ -17,9 +17,38 @@ import {
 
 export const maxDuration = 60;
 
+function getErrorMessage(error: unknown): string {
+	if (error instanceof Error) {
+		return error.message;
+	}
+
+	if (typeof error === "string") {
+		return error;
+	}
+
+	try {
+		return JSON.stringify(error);
+	} catch {
+		return "Unknown error";
+	}
+}
+
 export async function POST(req: Request) {
 	try {
 		await getAuthenticatedUserId();
+
+		const modelName =
+			process.env.GOOGLE_GENERATIVE_AI_MODEL?.trim() || "gemini-flash-latest";
+
+		if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY?.trim()) {
+			console.error(
+				"Compiler chat error: Missing GOOGLE_GENERATIVE_AI_API_KEY",
+			);
+			return new Response(
+				"AI provider is not configured. Set GOOGLE_GENERATIVE_AI_API_KEY and restart the dev server.",
+				{ status: 500 },
+			);
+		}
 
 		const {
 			messages,
@@ -34,7 +63,7 @@ export async function POST(req: Request) {
 		}
 
 		const result = streamText({
-			model: google("gemini-2.0-flash-latest"),
+			model: google(modelName),
 			system: BODYBUILDING_SYSTEM_PROMPT,
 			messages: convertToModelMessages(messages),
 			tools: bodybuildingTools,
@@ -51,7 +80,13 @@ export async function POST(req: Request) {
 
 		return result.toUIMessageStreamResponse({
 			onError(error) {
-				console.error("Compiler chat error:", error);
+				const message = getErrorMessage(error);
+				console.error("Compiler chat error:", message, error);
+
+				if (process.env.NODE_ENV === "development") {
+					return `Workout generation failed: ${message}`;
+				}
+
 				return "I encountered an issue while generating your workout. Please try again or provide more specific information about your goals.";
 			},
 		});

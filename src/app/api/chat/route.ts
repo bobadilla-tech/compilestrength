@@ -6,9 +6,11 @@ export const maxDuration = 30;
 export async function POST(req: Request) {
 	try {
 		const { messages }: { messages: UIMessage[] } = await req.json();
+		const modelName =
+			process.env.GOOGLE_GENERATIVE_AI_MODEL?.trim() || "gemini-flash-latest";
 
 		const result = streamText({
-			model: google("gemini-2.0-flash-latest"),
+			model: google(modelName),
 			system: "You are a helpful assistant.",
 			messages: convertToModelMessages(messages),
 		});
