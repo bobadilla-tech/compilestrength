@@ -1,10 +1,5 @@
 # CompileStrength Landing Page
 
-[![Deployed on Cloudflare](https://img.shields.io/badge/Deployed%20on-Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://engineers.compilestrength.com)
-
-Official landing page for **CompileStrength** - AI-powered workout programming for engineers, developers, and tech professionals.
-
-## Overview
 
 CompileStrength is a science-based fitness platform that uses AI to generate personalized workout programs based on user data, goals, and physical constraints. This landing page serves as the marketing site and entry point to the main SaaS application.
 
@@ -76,7 +71,7 @@ The site will be available at `http://localhost:3000`
 
 ## Deployment
 
-This project is configured for **Cloudflare Pages** deployment (supports private GitHub repos in organizations).
+This project is configured for **Cloudflare Pages** deployment.
 
 ### Deploy to Cloudflare Pages
 
@@ -169,48 +164,4 @@ Cloudflare Pages automatically deploys:
 - ✅ Canonical URLs
 - ✅ Web manifest
 
-## Related Projects
-
-This landing page is part of the CompileStrength SaaS ecosystem:
-
-- **Main Application**: [compilestrength-web](https://github.com/bobadilla-tech/compilestrength) - Full-featured workout programming platform
-- **API**: Backend services for AI workout generation
-- **Blog**: Content marketing and SEO
-
-## Legal & Copyright
-
-**Copyright © 2025 Eliaz Bobadilla. All Rights Reserved.**
-
-CompileStrength™ is a trademark of Eliaz Bobadilla. This project is developed under the "Bobadilla Tech" brand (GitHub organization) but is wholly owned by Eliaz Bobadilla as an individual.
-
-### Key Points
-
-- All source code, designs, and intellectual property are owned by Eliaz Bobadilla
-- This is the marketing landing page for the CompileStrength SaaS platform
-- Full legal documentation available at the main application
-
-### Third-Party Licenses
-
-This landing page uses open-source components under their respective licenses:
-- Next.js (MIT)
-- React (MIT)
-- Tailwind CSS (MIT)
-- Radix UI (MIT)
-- Lucide Icons (ISC)
-
-## Contact
-
-- **Website**: [compilestrength.com](https://engineers.compilestrength.com)
-- **Email**: eliaz@bobadilla.tech
-- **GitHub**: [@bobadilla-tech](https://github.com/bobadilla-tech)
-- **LinkedIn**: [CompileStrength](https://www.linkedin.com/company/compilestrength)
-
-## License
-
-Proprietary - All rights reserved. This code is private and confidential.
-
-For licensing inquiries, contact: eliaz@bobadilla.tech
-
----
-
-**Last Updated**: December 18, 2025
+  
