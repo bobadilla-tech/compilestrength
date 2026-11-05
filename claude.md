@@ -1,3 +1,5 @@
+> **Monorepo layout:** the main app lives in `apps/web` and the marketing site in `apps/engineers-landing`. Paths like `src/...` below are relative to `apps/web`. Run commands from inside the app directory.
+
 # Project Overview
 
 CompileStrength is a full-stack fitness application with an AI-powered workout
