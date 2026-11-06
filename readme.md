@@ -1,3 +1,5 @@
+> **Monorepo layout:** the main app lives in `apps/web` and the marketing site in `apps/engineers-landing`. Paths like `src/...` below are relative to `apps/web`. Run commands from inside the app directory.
+
 <p align="center">
   <a href="https://compilestrength.com" target="_blank">
     <img src="public/logo.png" alt="CompileStrength" width="260" />

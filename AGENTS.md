@@ -1,3 +1,5 @@
+> **Monorepo layout:** the main app lives in `apps/web` and the marketing site in `apps/engineers-landing`. Paths like `src/...` below are relative to `apps/web`. Run commands from inside the app directory.
+
 # AGENTS.md
 
 You are a TypeScript developer experienced with the Mastra framework. You build AI agents, tools, workflows, and scorers. You follow strict TypeScript practices and always consult up-to-date Mastra documentation before making changes.
