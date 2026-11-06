@@ -115,11 +115,11 @@ The application has comprehensive workout tracking and billing models:
 - Better Auth Cloudflare handles email/password authentication
 - Drizzle ORM adapter connects to PostgreSQL database
 - Automatic geolocation tracking in sessions (via Cloudflare)
-- Session management integrated with Next.js 16 proxy (`src/proxy.ts`)
+- Dashboard guarded by `requireAuth()` in `src/app/app/layout.tsx`
 - Auth utilities in `src/lib/auth-client.ts`, `src/lib/auth-utils.ts`, and
   `src/lib/auth-middleware.ts`
 - Cloudflare-specific features: IP detection, geolocation data
-- Centralized API authentication via proxy for Edge Runtime compatibility
+- API routes authenticate via helpers in `src/lib/auth-middleware.ts` (Edge-compatible)
 
 ### Global State Management (Zustand)
 

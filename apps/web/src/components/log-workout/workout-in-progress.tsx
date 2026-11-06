@@ -368,12 +368,15 @@ export function WorkoutInProgress({
 																<Button
 																	size="sm"
 																	className="h-8"
-																	disabled={completingSet === `${exerciseIdx}-${setIdx}`}
+																	disabled={
+																		completingSet === `${exerciseIdx}-${setIdx}`
+																	}
 																	onClick={() =>
 																		handleCompleteSet(exerciseIdx, setIdx)
 																	}
 																>
-																	{completingSet === `${exerciseIdx}-${setIdx}` ? (
+																	{completingSet ===
+																	`${exerciseIdx}-${setIdx}` ? (
 																		<Loader2 className="h-3 w-3 animate-spin" />
 																	) : (
 																		<CheckCircle className="h-3 w-3" />
@@ -416,7 +419,11 @@ export function WorkoutInProgress({
 									Save your workout and view summary
 								</p>
 							</div>
-							<Button size="lg" disabled={isFinishing} onClick={handleFinishWorkout}>
+							<Button
+								size="lg"
+								disabled={isFinishing}
+								onClick={handleFinishWorkout}
+							>
 								{isFinishing ? (
 									<>
 										<Loader2 className="h-4 w-4 mr-2 animate-spin" />
