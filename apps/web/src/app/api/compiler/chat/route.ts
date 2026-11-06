@@ -65,7 +65,7 @@ export async function POST(req: Request) {
 		const result = streamText({
 			model: google(modelName),
 			system: BODYBUILDING_SYSTEM_PROMPT,
-			messages: convertToModelMessages(messages),
+			messages: await convertToModelMessages(messages),
 			tools: bodybuildingTools,
 			stopWhen: stepCountIs(10),
 			onStepFinish({ text, toolCalls, toolResults }) {

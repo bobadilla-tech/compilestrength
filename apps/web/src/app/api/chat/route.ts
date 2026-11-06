@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 		const result = streamText({
 			model: google(modelName),
 			system: "You are a helpful assistant.",
-			messages: convertToModelMessages(messages),
+			messages: await convertToModelMessages(messages),
 		});
 
 		return result.toUIMessageStreamResponse();

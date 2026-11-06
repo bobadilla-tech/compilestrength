@@ -538,7 +538,21 @@ Webhook endpoint at `/api/webhooks/lemonsqueezy` handles:
 
 All events are stored in `WebhookEvents` table and processed asynchronously.
 
-### Testing
+### Testing & CI
 
-No specific test framework is configured. Check with the user for preferred
-testing approach before adding tests.
+- Unit tests: Vitest (`bun run test:run`, `bunx vitest run --coverage`).
+- CI (`.github/workflows/ci.yml`) runs per changed app: Biome, ESLint, `tsc`,
+  Vitest, `next build`, OpenNext (Cloudflare) build, plus a dependency audit.
+  `CI Success` is the single required check. Reproduce locally from `apps/web`:
+  `bunx biome check --diagnostic-level=error . && bun run lint && bun run typecheck && bunx vitest run && bun run build`
+  (build needs `DATABASE_URL`, `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`,
+  `LEMONSQUEEZY_STORE_ID`; dummy values are fine).
+- Keep `bun.lock` committed and in sync (`bun install` after editing
+  `package.json`); CI installs with `--frozen-lockfile`.
+- TypeScript in `apps/web` is pinned to 6.x until `typescript-eslint` supports 7.
+
+### Work records
+
+- `.artifacts/` holds dated plans/audits/handoff notes
+  (`.artifacts/YYYY/MM/YYYYMMDD--<slug>/`). Read `.artifacts/README.md` and
+  `.artifacts/AGENTS.md` before adding to it.

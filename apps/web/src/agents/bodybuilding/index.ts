@@ -2,8 +2,9 @@
 
 // Shared tool imports
 import { explainChoice, setGenerationProgress } from "../shared/tools";
-export { explainChoice, setGenerationProgress };
+
 export { BODYBUILDING_SYSTEM_PROMPT } from "./prompts";
+export { explainChoice, setGenerationProgress };
 
 // Tool imports
 import { addExercise } from "./tools/add-exercise";
