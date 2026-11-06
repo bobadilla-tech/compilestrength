@@ -353,7 +353,7 @@ export function useActiveSession() {
 			"startTime:",
 			workoutSession?.startTime,
 		);
-		if (!workoutSession || !workoutSession.startTime) return 0;
+		if (!workoutSession?.startTime) return 0;
 		try {
 			const startTime = new Date(workoutSession.startTime).getTime();
 			if (Number.isNaN(startTime)) return 0;

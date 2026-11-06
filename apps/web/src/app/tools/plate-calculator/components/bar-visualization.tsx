@@ -7,6 +7,11 @@ interface BarVisualizationProps {
 	unit: WeightUnit;
 }
 
+// One stable id per physical plate (identical plates are never reordered).
+function plateKeys(plate: { weight: number; count: number }): string[] {
+	return Array.from({ length: plate.count }, (_, i) => `${plate.weight}-${i}`);
+}
+
 export function BarVisualization({
 	plates,
 	barWeight,
@@ -23,9 +28,9 @@ export function BarVisualization({
 				{/* Left side plates */}
 				<div className="flex">
 					{plates.map((plate) =>
-						Array.from({ length: plate.count }).map((_, countIndex) => (
+						plateKeys(plate).map((plateKey) => (
 							<div
-								key={`left-${plate.weight}-${countIndex}`}
+								key={`left-${plateKey}`}
 								className={`w-3 h-12 ${plate.color} border border-zinc-600 -ml-1 first:ml-0`}
 								title={`${plate.weight}${unit === "kg" ? "kg" : "lb"} plate`}
 							/>
@@ -42,9 +47,9 @@ export function BarVisualization({
 				{/* Right side plates (mirror of left) */}
 				<div className="flex flex-row-reverse">
 					{plates.map((plate) =>
-						Array.from({ length: plate.count }).map((_, countIndex) => (
+						plateKeys(plate).map((plateKey) => (
 							<div
-								key={`right-${plate.weight}-${countIndex}`}
+								key={`right-${plateKey}`}
 								className={`w-3 h-12 ${plate.color} border border-zinc-600 -mr-1 first:mr-0`}
 								title={`${plate.weight}${unit === "kg" ? "kg" : "lb"} plate`}
 							/>
